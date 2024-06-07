@@ -1,15 +1,17 @@
 --
 -- 一般設定
 --
-vim.api.nvim_set_option("termguicolors", true)
-vim.api.nvim_set_option("scrolloff", 4)
-vim.api.nvim_set_option("inccommand", "split")
-vim.api.nvim_set_option("showtabline", 2)
+local api = vim.api
+local set_opt = api.nvim_set_option
+local set_win = api.nvim_win_set_option
+set_opt("termguicolors", true)
+set_opt("scrolloff", 4)
+set_opt("inccommand", "split")
+set_opt("showtabline", 2)
 
-vim.api.nvim_win_set_option(0, "number", true)
-vim.api.nvim_win_set_option(0, "relativenumber", true)
-vim.api.nvim_win_set_option(0, "cursorline", true)
-
---
--- キーマップ
---
+set_win(0, "number", true)
+set_win(0, "relativenumber", true)
+set_win(0, "wrap", false)
+set_win(0, "tabstop", 3)
+set_win(0, "shiftwidth", 3)
+set_win(0, "cursorline", true)

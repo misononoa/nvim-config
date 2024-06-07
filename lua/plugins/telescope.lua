@@ -7,11 +7,11 @@ return {
 		"nvim-telescope/telescope-live-grep-args.nvim"
 	},
 	lazy = true,
-	config = function()
-		local telescope = require("telescope")
+	keys = { "<leader>" },
+	config = true,
+	opts = function()
 		local lga_actions = require("telescope-live-grep-args.actions")
-
-		telescope.setup({
+		return {
 			extensions = {
 				live_grep_args = {
 					auto_quoting = true,
@@ -23,17 +23,19 @@ return {
 					},
 				},
 			},
-		})
-		telescope.load_extension("live_grep_args")
+		}
 	end,
 	init = function()
-		local map = vim.keymap.set
+		local telescope = require("telescope")
+		telescope.load_extension("live_grep_args")
 		local builtin = require("telescope.builtin")
-		local lga = require("telescope").extensions.live_grep_args
+		local lga = telescope.extensions.live_grep_args
+
+		local map = vim.keymap.set
 		map("n", "<leader>]", lga.live_grep_args, {})
 		map("n", "<leader>f", builtin.find_files, {})
 		map("n", "<leader>b", builtin.buffers, {})
 		map("n", "<leader>h", builtin.help_tags, {})
 		map("n", "<leader>g", builtin.git_status, {})
-	end
+	end,
 }

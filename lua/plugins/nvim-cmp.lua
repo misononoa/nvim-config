@@ -6,32 +6,9 @@ return {
 		"hrsh7th/cmp-buffer",
 		"hrsh7th/cmp-cmdline",
 	},
-	config = function()
-		local cmp = require('cmp')
-		cmp.setup({
-			snippet = {
-				expand = function(args)
-					vim.fn['vsnip#anonymous'](args.body)
-				end,
-			},
-			sources = cmp.config.sources({
-				{ name = 'nvim_lsp' },
-				{ name = 'vsnip' },
-			}, {
-				{ name = 'buffer' }
-			}),
-			mapping = cmp.mapping.preset.insert({
-				["<Tab>"] = cmp.mapping.select_next_item(),
-				["<S-Tab>"] = cmp.mapping.select_prev_item(),
-				["<C-space>"] = cmp.mapping.complete(),
-				--["<C-e>"] = cmp.mapping.abort(),
-				["<Esc>"] = cmp.mapping.abort(),
-				["<CR>"] = cmp.mapping.confirm({ select = true })
-			}),
-			experimental = {
-				ghost_text = true,
-			},
-		})
+	config = true,
+	opts = function()
+		local cmp = require("cmp")
 
 		cmp.setup.filetype('gitcommit', {
 			sources = cmp.config.sources({
@@ -56,5 +33,30 @@ return {
 				{ name = 'cmdline' }
 			}),
 		})
-	end,
+
+		return {
+			snippet = {
+				expand = function(args)
+					vim.fn['vsnip#anonymous'](args.body)
+				end,
+			},
+			sources = cmp.config.sources({
+				{ name = 'nvim_lsp' },
+				{ name = 'vsnip' },
+			}, {
+				{ name = 'buffer' }
+			}),
+			mapping = cmp.mapping.preset.insert({
+				["<Tab>"] = cmp.mapping.select_next_item(),
+				["<S-Tab>"] = cmp.mapping.select_prev_item(),
+				["<C-space>"] = cmp.mapping.complete(),
+				--["<C-e>"] = cmp.mapping.abort(),
+				["<Esc>"] = cmp.mapping.abort(),
+				["<CR>"] = cmp.mapping.confirm({ select = true })
+			}),
+			experimental = {
+				ghost_text = true,
+			},
+		}
+	end
 }

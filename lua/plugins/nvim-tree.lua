@@ -1,25 +1,25 @@
 return {
 	"nvim-tree/nvim-tree.lua",
-	config = function()
-		local opts = {
+	config = function(plugin, opts)
+		require("nvim-tree").setup(opts)
+		local key_opts = {
 			noremap = true,
 			silent = true,
 		}
 		local map = vim.api.nvim_set_keymap
-		map("n", "/<leader>", "<cmd>NvimTreeOpen .<cr>", opts)
-		map("n", "<leader>/", "<cmd>NvimTreeClose<cr>", opts)
-
-		require("nvim-tree").setup({
-
-			sort = {
-				sorter = "case_sensitive",
-			},
-			view = {
-				width = 25,
-			},
-			filters = {
-				dotfiles = true,
-			},
-		})
-	end
+		map("n", "<leader><leader>", "<cmd>NvimTreeToggle .<cr>", key_opts)
+	end,
+	opts = {
+		sort = {
+			sorter = "case_sensitive",
+		},
+		view = {
+			width = 25,
+		},
+		filters = {
+			dotfiles = true,
+		},
+	},
+	lazy = true,
+	keys = { "<leader>" },
 }

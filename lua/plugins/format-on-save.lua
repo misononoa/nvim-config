@@ -1,15 +1,18 @@
 return {
 	"elentok/format-on-save.nvim",
-	config = function()
+	lazy = true,
+	keys = { "<C-a>", },
+	config = function(plugin, opts)
+		require("format-on-save").setup(opts)
 		vim.api.nvim_set_keymap("n", "<C-a>", "<cmd>Format<cr>", { noremap = true })
+	end,
+	opts = function()
 		local lsp = require("format-on-save.formatters").lsp
-		require("format-on-save").setup({
+		return {
 			formatter_by_ft = {
 				lua = lsp,
 				typescript = lsp,
-			}
-		})
+			},
+		}
 	end,
-	lazy = true,
-	keys = { "<C-a>", "<Esc>" },
 }
