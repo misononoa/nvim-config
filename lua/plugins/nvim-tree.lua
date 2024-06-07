@@ -5,7 +5,10 @@ return {
 			noremap = true,
 			silent = true,
 		}
-		vim.api.nvim_set_keymap("n", "<leader><leader>", "<cmd>NvimTreeToggle .<cr>", opts)
+		local map = vim.api.nvim_set_keymap
+		map("n", "/<leader>", "<cmd>NvimTreeOpen .<cr>", opts)
+		map("n", "<leader>/", "<cmd>NvimTreeClose<cr>", opts)
+
 		require("nvim-tree").setup({
 
 			sort = {
