@@ -1,18 +1,46 @@
-local api = vim.api
-local set_opt = api.nvim_set_option
-local set_win = api.nvim_win_set_option
+local set_opt = vim.api.nvim_set_option_value
 
 --
--- 一般設定
+-- general
 --
-set_opt("termguicolors", true)
-set_opt("scrolloff", 4)
-set_opt("inccommand", "split")
-set_opt("showtabline", 2)
-set_opt("tabstop", 3)
-set_opt("shiftwidth", 3)
+set_opt("termguicolors", true, {})
+set_opt("bg", "light", {})
+set_opt("scrolloff", 4, {})
+set_opt("inccommand", "split", {})
+set_opt("showtabline", 2, {})
+set_opt("tabstop", 3, {})
+set_opt("shiftwidth", 3, {})
+set_opt("number", true, {})
+set_opt("relativenumber", true, {})
+set_opt("wrap", false, {})
+set_opt("cursorline", true, {})
+-- 言語を英語に
+vim.cmd[[language en_US]]
 
-set_win(0, "number", true)
-set_win(0, "relativenumber", true)
-set_win(0, "wrap", false)
-set_win(0, "cursorline", true)
+--
+-- keymap
+--
+local map = vim.api.nvim_set_keymap
+local opts = { noremap = true, silent = true }
+-- タブ操作
+map("n", "<C-Left>", "<cmd>tabprevious<cr>", opts)
+map("n", "<C-Right>", "<cmd>tabnext<cr>", opts)
+map("n", "<C-t><C-t>", "<cmd>tab term pwsh.exe<cr>", opts)
+map("n", "<C-t>", "<cmd>tabnew<cr>", opts)
+-- ターミナルを抜ける操作
+map("t", "<Esc><Esc>", "<C-\\><C-n>", opts)
+
+--
+-- NeoVide
+--
+if vim.g.neovide then
+	vim.g.neovide_theme = "light"
+	vim.g.neovide_scale_factor = 1.0
+	vim.o.guifont = "CaskaydiaCove NFP,M PLUS 1 Code"
+
+	-- animation_speed
+	local aspeed = 0.1
+	vim.g.neovide_cursor_animation_length = 0
+	vim.g.neovide_position_animation_length = aspeed
+	vim.g.neovide_scroll_animation_length = aspeed
+end

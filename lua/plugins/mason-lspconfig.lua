@@ -3,19 +3,26 @@ return {
 	dependencies = {
 		"neovim/nvim-lspconfig",
 	},
-	config = true,
-	opts = {
-		ensure_installed = {
-			"lua_ls",
-			"biome",
-			"astro",
-		}
-	},
-	init = function()
+	config = function(plugin, opts)
+		require("mason-lspconfig").setup(opts)
 		require("mason-lspconfig").setup_handlers({
 			function(server_name)
 				require("lspconfig")[server_name].setup {}
 			end,
 		})
 	end,
+	opts = function()
+		local getls = function()
+			local ok, ls = pcall(require, "ensure-ls")
+			if ok then
+				return ls
+			else
+				return { "lua_ls" }
+			end
+		end
+
+		return {
+			ensure_installed = getls(),
+		}
+	end
 }
