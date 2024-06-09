@@ -14,8 +14,13 @@ set_opt("number", true, {})
 set_opt("relativenumber", true, {})
 set_opt("wrap", false, {})
 set_opt("cursorline", true, {})
+
 -- 言語を英語に
-vim.cmd[[language en_US]]
+if vim.fn.has("win64") == 1 or vim.fn.has("win32") == 1 then
+	vim.cmd [[language en_US]]
+elseif vim.fn.has("linux") == 1 then
+	vim.cmd [[language C.utf8]]
+end
 
 --
 -- keymap
