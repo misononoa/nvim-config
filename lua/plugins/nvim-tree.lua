@@ -1,6 +1,6 @@
 return {
 	"nvim-tree/nvim-tree.lua",
-	config = function(plugin, opts)
+	config = function(_, opts)
 		require("nvim-tree").setup(opts)
 		local key_opts = {
 			noremap = true,

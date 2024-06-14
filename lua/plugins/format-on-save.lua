@@ -2,7 +2,7 @@ return {
 	"elentok/format-on-save.nvim",
 	lazy = true,
 	keys = { "<C-a>", },
-	config = function(plugin, opts)
+	config = function(_, opts)
 		require("format-on-save").setup(opts)
 		vim.api.nvim_set_keymap("n", "<C-a>", "<cmd>Format<cr>", { noremap = true })
 	end,

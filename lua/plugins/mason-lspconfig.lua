@@ -3,7 +3,7 @@ return {
 	dependencies = {
 		"neovim/nvim-lspconfig",
 	},
-	config = function(plugin, opts)
+	config = function(_, opts)
 		require("mason-lspconfig").setup(opts)
 		require("mason-lspconfig").setup_handlers({
 			function(server_name)
