@@ -12,6 +12,7 @@ return {
 			formatter_by_ft = {
 				lua = lsp,
 				typescript = lsp,
+				rust = lsp,
 			},
 		}
 	end,

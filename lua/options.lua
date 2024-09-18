@@ -32,9 +32,6 @@ elseif is_os("linux") == 1 then
 	vim.cmd [[language C.utf8]]
 end
 
--- ホームディレクトリに、移動しちゃいますよ～～～～
-vim.cmd [[cd ~]]
-
 --
 -- keymap
 --
@@ -44,25 +41,6 @@ local opts = { noremap = true, silent = true }
 map("n", "<C-Left>", "<cmd>tabprevious<cr>", opts)
 map("n", "<C-Right>", "<cmd>tabnext<cr>", opts)
 map("n", "<C-t>", "<cmd>tabnew<cr>", opts)
-if is_os("win") then
-	map("n", "<C-t><C-t>", "<cmd>tab term pwsh.exe<cr>", opts)
-elseif is_os("linux") then
-	map("n", "<C-t><C-t>", "<cmd>tab term<cr>", opts)
-end
+map("n", "<C-t><C-t>", "<cmd>tab term<cr>", opts)
 -- ターミナルを抜ける操作
 map("t", "<Esc><Esc>", "<C-\\><C-n>", opts)
-
---
--- NeoVide
---
-if vim.g.neovide then
-	vim.g.neovide_theme = "light"
-	vim.g.neovide_scale_factor = 1.0
-	vim.o.guifont = "CaskaydiaCove NFP,M PLUS 1 Code"
-
-	-- animation_speed
-	local aspeed = 0.1
-	vim.g.neovide_cursor_animation_length = 0
-	vim.g.neovide_position_animation_length = aspeed
-	vim.g.neovide_scroll_animation_length = aspeed
-end
