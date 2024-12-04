@@ -30,7 +30,6 @@ return {
 		telescope.load_extension("live_grep_args")
 		local builtin = require("telescope.builtin")
 		local lga = telescope.extensions.live_grep_args
-
 		local map = vim.keymap.set
 		map("n", "<leader>]", lga.live_grep_args, {})
 		map("n", "<leader>f", builtin.find_files, {})

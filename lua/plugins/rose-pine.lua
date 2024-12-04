@@ -5,15 +5,16 @@ return {
 	priority = 1000,
 	configure = true,
 	opts = {
-		variant = "dawn",
-		dark_variant = "moon",
+		variant = "auto",
+		dark_variant = "main",
 		dim_inactive_windows = true,
 		enable = {
 			terminal = true,
 			migrations = true,
 		},
 	},
-	init = function ()
-		vim.cmd[[colorscheme rose-pine]]
+	init = function()
+		-- vim.o.background = 'dark'
+		vim.cmd [[colorscheme rose-pine]]
 	end
 }

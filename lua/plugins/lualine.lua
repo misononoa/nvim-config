@@ -4,7 +4,10 @@ return {
 	config = true,
 	opts = {
 		options = {
-			theme = "rose-pine",
+			theme = "auto",
+			section_separators = '',
+			component_separators = '',
+			globalstatus = true,
 		},
 	},
 }

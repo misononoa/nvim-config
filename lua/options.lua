@@ -24,6 +24,7 @@ set_opt("number", true, {})
 set_opt("relativenumber", true, {})
 set_opt("wrap", false, {})
 set_opt("cursorline", true, {})
+vim.opt.clipboard:append({ 'unnamedplus' })
 
 -- 言語を英語に
 if is_os("win") then
@@ -35,12 +36,15 @@ end
 --
 -- keymap
 --
-local map = vim.api.nvim_set_keymap
-local opts = { noremap = true, silent = true }
--- タブ操作
-map("n", "<C-Left>", "<cmd>tabprevious<cr>", opts)
-map("n", "<C-Right>", "<cmd>tabnext<cr>", opts)
-map("n", "<C-t>", "<cmd>tabnew<cr>", opts)
-map("n", "<C-t><C-t>", "<cmd>tab term<cr>", opts)
--- ターミナルを抜ける操作
-map("t", "<Esc><Esc>", "<C-\\><C-n>", opts)
+local setkeymap = function()
+	local map = vim.api.nvim_set_keymap
+	local opts = { noremap = true, silent = true }
+	-- タブ操作
+	map("n", "<C-Left>", "<cmd>tabprevious<cr>", opts)
+	map("n", "<C-Right>", "<cmd>tabnext<cr>", opts)
+	map("n", "<C-t>", "<cmd>tabnew<cr>", opts)
+	map("n", "<C-t><C-t>", "<cmd>tab term<cr>", opts)
+	-- ターミナルを抜ける操作
+	map("t", "<Esc><Esc>", "<C-\\><C-n>", opts)
+end
+setkeymap()
