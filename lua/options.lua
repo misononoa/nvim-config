@@ -24,6 +24,7 @@ set_opt("number", true, {})
 set_opt("relativenumber", true, {})
 set_opt("wrap", false, {})
 set_opt("cursorline", true, {})
+set_opt("mouse", 'v', {})
 vim.opt.clipboard:append({ 'unnamedplus' })
 
 -- 言語を英語に
@@ -43,8 +44,16 @@ local setkeymap = function()
 	map("n", "<C-Left>", "<cmd>tabprevious<cr>", opts)
 	map("n", "<C-Right>", "<cmd>tabnext<cr>", opts)
 	map("n", "<C-t>", "<cmd>tabnew<cr>", opts)
-	map("n", "<C-t><C-t>", "<cmd>tab term<cr>", opts)
+	if vim.fn.executable('pwsh') then
+		map("n", "<C-t><C-t>", "<cmd>tab term pwsh<cr>", opts)
+	elseif vim.fn.executable('fish') then
+		map("n", "<C-t><C-t>", "<cmd>tab term fish<cr>", opts)
+	end
 	-- ターミナルを抜ける操作
 	map("t", "<Esc><Esc>", "<C-\\><C-n>", opts)
 end
 setkeymap()
+
+if vim.g.neovide then
+	require 'neovide-config'
+end
