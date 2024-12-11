@@ -6,6 +6,10 @@ return {
 		"hrsh7th/cmp-buffer",
 		"hrsh7th/cmp-cmdline",
 	},
+	lazy = true,
+	event = {
+		'VeryLazy'
+	},
 	config = true,
 	opts = function()
 		local cmp = require("cmp")

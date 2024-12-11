@@ -14,7 +14,6 @@ end
 -- general
 --
 set_opt("termguicolors", true, {})
-set_opt("bg", "light", {})
 set_opt("scrolloff", 4, {})
 set_opt("inccommand", "split", {})
 set_opt("showtabline", 2, {})
@@ -30,7 +29,7 @@ vim.opt.clipboard:append({ 'unnamedplus' })
 -- 言語を英語に
 if is_os("win") then
 	vim.cmd [[language en_US]]
-elseif is_os("linux") == 1 then
+elseif is_os("linux") then
 	vim.cmd [[language C.utf8]]
 end
 
@@ -40,6 +39,10 @@ end
 local setkeymap = function()
 	local map = vim.api.nvim_set_keymap
 	local opts = { noremap = true, silent = true }
+
+	-- insertを抜ける操作
+	map("i", "jj", "<Esc><Esc>", opts)
+
 	-- タブ操作
 	map("n", "<C-Left>", "<cmd>tabprevious<cr>", opts)
 	map("n", "<C-Right>", "<cmd>tabnext<cr>", opts)
