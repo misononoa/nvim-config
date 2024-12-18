@@ -1,5 +1,6 @@
 return {
 	'stevearc/oil.nvim',
+	dependencies = { 'echasnovski/mini.icons' },
 	opts = {
 		default_file_explorer = true,
 		keymaps = {
@@ -16,7 +17,4 @@ return {
 			end,
 		},
 	},
-
-	config = true,
-	dependencies = { 'echasnovski/mini.icons' },
 }

@@ -7,11 +7,36 @@ return {
 		"nvim-telescope/telescope-live-grep-args.nvim"
 	},
 	lazy = true,
-	keys = { "<leader>" },
-	config = true,
+	event = {
+		'VeryLazy',
+	},
+	config = function (opts)
+		local telescope = require("telescope")
+		telescope.setup(opts)
+		telescope.load_extension("live_grep_args")
+		local builtin = require("telescope.builtin")
+		local lga = telescope.extensions.live_grep_args
+		local map = vim.keymap.set
+		map("n", "fg", lga.live_grep_args, {})
+		map("n", "ff", builtin.find_files, {})
+		map("n", "fb", builtin.buffers, {})
+		map("n", "fh", builtin.help_tags, {})
+		map("n", "fi", builtin.git_status, {})
+	end,
 	opts = function()
-		local lga_actions = require("telescope-live-grep-args.actions")
+		local actions = require 'telescope.actions'
+		local transform_mod = require('telescope.actions.mt').transform_mod
+		local lga_actions = require 'telescope-live-grep-args.actions'
 		return {
+			defaults = {
+				mappings = {
+					n = {
+						['q'] = function (prompt_bufnr)
+							actions.close(prompt_bufnr)
+						end,
+					}
+				}
+			},
 			extensions = {
 				live_grep_args = {
 					auto_quoting = true,
@@ -24,17 +49,5 @@ return {
 				},
 			},
 		}
-	end,
-	init = function()
-		local telescope = require("telescope")
-		telescope.load_extension("live_grep_args")
-		local builtin = require("telescope.builtin")
-		local lga = telescope.extensions.live_grep_args
-		local map = vim.keymap.set
-		map("n", "<leader>]", lga.live_grep_args, {})
-		map("n", "<leader>f", builtin.find_files, {})
-		map("n", "<leader>b", builtin.buffers, {})
-		map("n", "<leader>h", builtin.help_tags, {})
-		map("n", "<leader>g", builtin.git_status, {})
 	end,
 }

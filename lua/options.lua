@@ -44,13 +44,15 @@ local setkeymap = function()
 	map("i", "jj", "<Esc><Esc>", opts)
 
 	-- タブ操作
-	map("n", "<C-Left>", "<cmd>tabprevious<cr>", opts)
-	map("n", "<C-Right>", "<cmd>tabnext<cr>", opts)
+	map("n", "<C-h>", "<cmd>tabprevious<cr>", opts)
+	map("n", "<C-k>", "<cmd>tabprevious<cr>", opts)
+	map("n", "<C-l>", "<cmd>tabnext<cr>", opts)
+	map("n", "<C-j>", "<cmd>tabnext<cr>", opts)
 	map("n", "<C-t>", "<cmd>tabnew<cr>", opts)
-	if vim.fn.executable('pwsh') then
+	if is_os('win') and vim.fn.executable('pwsh') then
 		map("n", "<C-t><C-t>", "<cmd>tab term pwsh<cr>", opts)
-	elseif vim.fn.executable('fish') then
-		map("n", "<C-t><C-t>", "<cmd>tab term fish<cr>", opts)
+	elseif is_os('linux') then
+		map("n", "<C-t><C-t>", "<cmd>tab term<cr>", opts)
 	end
 	-- ターミナルを抜ける操作
 	map("t", "<Esc><Esc>", "<C-\\><C-n>", opts)
