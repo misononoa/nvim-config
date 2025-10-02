@@ -25,7 +25,6 @@ return {
 	end,
 	opts = function()
 		local actions = require 'telescope.actions'
-		local transform_mod = require('telescope.actions.mt').transform_mod
 		local lga_actions = require 'telescope-live-grep-args.actions'
 		return {
 			defaults = {

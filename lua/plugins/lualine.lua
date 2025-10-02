@@ -7,7 +7,7 @@ return {
 	opts = {
 		options = {
 			theme = "auto",
-			section_separators = '',
+			section_separators = '|',
 			component_separators = '',
 			globalstatus = true,
 		},
