@@ -13,4 +13,3 @@ end
 
 keymap.set('n', '<esc><esc>', '<cmd>noh<cr>', opts)
 keymap.set('i', '<c-o>', '<c-o>o', opts)
-

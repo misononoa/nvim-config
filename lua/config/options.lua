@@ -16,8 +16,5 @@ vim.opt.mousemodel = 'extend'
 vim.opt.signcolumn = 'yes'
 
 if vim.g.neovide then
-	vim.cmd("colorscheme catppuccin")
-	vim.cmd("language en_US")
 	vim.g.neovide_cursor_animation_length = 0
 end
-

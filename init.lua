@@ -24,6 +24,8 @@ vim.opt.rtp:prepend(lazypath)
 require('config.options')
 require('config.keymaps')
 
+vim.diagnostic.config(require('config.diagnostic'))
+
 if not vim.g.vscode then
 	vim.lsp.config('lua_ls', {
 		settings = require('config.lsp').native
