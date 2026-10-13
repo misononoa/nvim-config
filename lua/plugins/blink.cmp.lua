@@ -9,6 +9,7 @@ return {
 	end,
 	opts = {
 		fuzzy = { implementation = "lua" },
+		signature = { enabled = true },
 		keymap = {
 			preset = "enter",
 			["<Tab>"] = { "select_next", "fallback" }

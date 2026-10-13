@@ -1,10 +1,5 @@
 return {
-	enabled = {
-		"lua_ls",
-		"vimls",
-		"jdtls",
-	},
-	native = {
+	settings = {
 		Lua = {
 			runtime = {
 				version = "LuaJIT",
@@ -20,6 +15,7 @@ return {
 			telemetry = {
 				enable = false,
 			},
-		},
+		}
 	}
 }
+

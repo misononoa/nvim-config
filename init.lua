@@ -27,9 +27,6 @@ require('config.keymaps')
 vim.diagnostic.config(require('config.diagnostic'))
 
 if not vim.g.vscode then
-	vim.lsp.config('lua_ls', {
-		settings = require('config.lsp').native
-	})
 	require("lazy").setup(require('config.lazy'))
 end
 
